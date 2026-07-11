@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TinyTech IT Solutions — Bridging Academia and Industry</title>
+<meta name="description" content="TinyTech IT Solutions is a corporate IT training and technology leadership organization bridging the gap between academic learning and industry expectations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #081120;
+    --bg-panel: #0f1d33;
+    --bg-panel-2: #122544;
+    --line: rgba(140,170,220,0.14);
+    --blue: #2f7fd6;
+    --cyan: #4fd6e0;
+    --amber: #f0b429;
+    --ink: #eaf1fb;
+    --ink-dim: #a8bcd9;
+    --ink-faint: #6f88ab;
+    --radius: 14px;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; scroll-behavior:auto !important; transition-duration:0.01ms !important;}
+  }
+
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  img{max-width:100%; display:block;}
+  section{position:relative;}
+
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--cyan);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:24px; height:1px;
+    background:var(--cyan);
+    display:inline-block;
+  }
+
+  h1,h2,h3{font-family:var(--display); font-weight:600; letter-spacing:-0.01em;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(8,17,32,0.72);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:74px;
+  }
+  .logo{display:flex; align-items:center; gap:10px; font-family:var(--display); font-weight:700; font-size:19px;}
+  .logo-mark{
+    width:32px; height:32px; border-radius:8px;
+    background:linear-gradient(135deg, var(--blue), var(--cyan));
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--display); font-size:15px; font-weight:700; color:#04101f;
+  }
+  .logo small{display:block; font-family:var(--mono); font-weight:400; font-size:9px; letter-spacing:0.16em; color:var(--ink-faint); text-transform:uppercase;}
+
+  .navlinks{display:flex; gap:34px; font-size:14px; color:var(--ink-dim);}
+  .navlinks a{position:relative; padding:4px 0; transition:color .2s;}
+  .navlinks a:hover, .navlinks a:focus-visible{color:var(--ink);}
+  .navlinks a::after{
+    content:''; position:absolute; bottom:0; left:0; width:0; height:1px; background:var(--cyan);
+    transition:width .25s;
+  }
+  .navlinks a:hover::after{width:100%;}
+
+  .nav-cta{
+    font-family:var(--mono); font-size:13px;
+    border:1px solid rgba(79,214,224,0.4);
+    padding:9px 18px; border-radius:999px;
+    color:var(--cyan);
+    transition:background .2s, color .2s;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{background:var(--cyan); color:#04101f;}
+
+  .navtoggle{display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:8px;}
+  .navtoggle span{width:22px; height:2px; background:var(--ink);}
+  @media (max-width:860px){
+    .navlinks{display:none;}
+    .nav-cta{display:none;}
+    .navtoggle{display:flex;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex; align-items:center;
+    padding-top:74px;
+    background:
+      radial-gradient(ellipse 900px 500px at 78% 15%, rgba(47,127,214,0.28), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 10% 90%, rgba(79,214,224,0.14), transparent 60%),
+      var(--bg);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(140,170,220,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(140,170,220,0.05) 1px, transparent 1px);
+    background-size:56px 56px;
+    mask-image:radial-gradient(ellipse 900px 700px at 70% 30%, black, transparent 75%);
+  }
+
+  .hero-inner{
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:60px; align-items:center;
+    position:relative; z-index:2; width:100%;
+  }
+  @media (max-width:900px){ .hero-inner{grid-template-columns:1fr;} }
+
+  .hero h1{
+    font-size:clamp(2.6rem, 5.4vw, 4.4rem);
+    line-height:1.03;
+    color:var(--ink);
+  }
+  .hero h1 .accent{
+    background:linear-gradient(90deg, var(--cyan), var(--blue));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero p.lede{
+    margin-top:26px; max-width:520px;
+    font-size:17px; color:var(--ink-dim);
+  }
+  .hero-ctas{display:flex; gap:16px; margin-top:38px; flex-wrap:wrap;}
+  .btn-primary{
+    font-family:var(--mono); font-size:13.5px;
+    background:var(--cyan); color:#04101f;
+    padding:14px 28px; border-radius:999px;
+    font-weight:500;
+    transition:transform .2s, box-shadow .2s;
+    display:inline-block;
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 30px rgba(79,214,224,0.25);}
+  .btn-ghost{
+    font-family:var(--mono); font-size:13.5px;
+    border:1px solid var(--line); color:var(--ink);
+    padding:14px 28px; border-radius:999px;
+    transition:border-color .2s, background .2s;
+    display:inline-block;
+  }
+  .btn-ghost:hover{border-color:var(--cyan); background:rgba(79,214,224,0.06);}
+
+  .hero-tags{display:flex; gap:10px; flex-wrap:wrap; margin-top:44px;}
+  .hero-tags span{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:0.04em;
+    border:1px solid var(--line); border-radius:999px;
+    padding:7px 14px; color:var(--ink-faint);
+  }
+
+  /* Signature: bridge diagram */
+  .bridge-signature{
+    position:relative;
+    aspect-ratio:1/1;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .bridge-svg{width:100%; height:100%;}
+  .node-label{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; fill:var(--ink-faint);
+  }
+  .pulse-dot{
+    animation:travel 3.2s linear infinite;
+  }
+  @keyframes travel{
+    0%{ offset-distance:0%; opacity:0;}
+    5%{opacity:1;}
+    95%{opacity:1;}
+    100%{ offset-distance:100%; opacity:0;}
+  }
+  .path-line{stroke-dasharray:6 6; animation:dash 30s linear infinite;}
+  @keyframes dash{ to{ stroke-dashoffset:-600; } }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section{padding:120px 0;}
+  .section.tight{padding:90px 0;}
+  .section-head{max-width:640px; margin-bottom:56px;}
+  .section-head h2{font-size:clamp(1.8rem, 3.4vw, 2.6rem); color:var(--ink);}
+  .section-head p{margin-top:16px; color:var(--ink-dim); font-size:16px;}
+
+  .divider{height:1px; background:var(--line); margin:0;}
+
+  /* ---------- ABOUT ---------- */
+  .about{background:var(--bg);}
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start;}
+  @media (max-width:860px){ .about-grid{grid-template-columns:1fr; gap:40px;} }
+  .about-grid p{color:var(--ink-dim); font-size:16px; margin-bottom:16px;}
+
+  .mission-card{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:28px;
+    display:flex; gap:20px; align-items:flex-start;
+    margin-bottom:22px;
+  }
+  .mission-icon{
+    flex-shrink:0; width:44px; height:44px; border-radius:10px;
+    background:rgba(240,180,41,0.12); border:1px solid rgba(240,180,41,0.3);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .mission-card h3{font-size:14px; font-family:var(--mono); text-transform:uppercase; letter-spacing:0.08em; color:var(--amber); margin-bottom:8px;}
+  .mission-card p{font-size:15px; color:var(--ink); margin:0;}
+
+  /* ---------- WHY TINYTECH ---------- */
+  .why{background:var(--bg-panel);}
+  .why-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  @media (max-width:900px){ .why-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:520px){ .why-grid{grid-template-columns:1fr;} }
+  .why-card{background:var(--bg-panel); padding:34px 28px;}
+  .why-num{font-family:var(--mono); font-size:12px; color:var(--ink-faint); margin-bottom:18px;}
+  .why-card h3{font-size:17px; margin-bottom:10px; color:var(--ink);}
+  .why-card p{font-size:14.5px; color:var(--ink-dim);}
+
+  /* ---------- EXPERTISE ---------- */
+  .expertise-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px;}
+  @media (max-width:900px){ .expertise-grid{grid-template-columns:1fr;} }
+
+  .stack-group h3{
+    font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:0.1em;
+    color:var(--ink-faint); margin-bottom:18px;
+  }
+  .stack-list{display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:12px; overflow:hidden; margin-bottom:36px;}
+  .stack-item{
+    background:var(--bg-panel); padding:16px 20px;
+    display:flex; align-items:center; justify-content:space-between;
+    font-size:14.5px;
+  }
+  .stack-item span.tag{font-family:var(--mono); font-size:11px; color:var(--cyan);}
+
+  .scenario-list{display:flex; flex-direction:column; gap:22px;}
+  .scenario{
+    display:flex; gap:18px; align-items:flex-start;
+    padding-bottom:22px; border-bottom:1px solid var(--line);
+  }
+  .scenario:last-child{border-bottom:none;}
+  .scenario-marker{
+    font-family:var(--mono); font-size:12px; color:var(--cyan);
+    flex-shrink:0; width:26px; padding-top:3px;
+  }
+  .scenario h4{font-size:15.5px; margin-bottom:6px; color:var(--ink);}
+  .scenario p{font-size:14px; color:var(--ink-dim);}
+
+  /* ---------- TRAINING APPROACH ---------- */
+  .approach{background:var(--bg-panel);}
+  .approach-track{
+    display:flex; position:relative; gap:0;
+  }
+  @media (max-width:860px){ .approach-track{flex-direction:column;} }
+  .approach-step{
+    flex:1; position:relative; padding:0 24px 0 0;
+  }
+  .approach-step:first-child{padding-left:0;}
+  .approach-line{
+    position:absolute; top:23px; left:0; right:0; height:1px; background:var(--line); z-index:0;
+  }
+  @media (max-width:860px){ .approach-line{display:none;} }
+  .approach-index{
+    width:46px; height:46px; border-radius:50%;
+    background:var(--bg); border:1px solid var(--cyan);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-size:15px; color:var(--cyan);
+    position:relative; z-index:1; margin-bottom:20px;
+  }
+  .approach-step h3{font-size:17px; margin-bottom:8px; color:var(--ink);}
+  .approach-step p{font-size:14px; color:var(--ink-dim); max-width:230px;}
+  @media (max-width:860px){ .approach-step{padding:0 0 32px 0; border-left:1px solid var(--line); padding-left:26px; margin-left:22px;}
+    .approach-step:last-child{padding-bottom:0;}
+    .approach-index{margin-bottom:16px; margin-left:-45px;}
+  }
+
+  /* ---------- TEAM ---------- */
+  .team-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:20px;}
+  @media (max-width:900px){ .team-grid{grid-template-columns:repeat(3,1fr);} }
+  @media (max-width:560px){ .team-grid{grid-template-columns:repeat(2,1fr);} }
+  .team-card{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:26px 18px; text-align:center;
+  }
+  .team-icon{
+    width:52px; height:52px; margin:0 auto 16px;
+    border-radius:50%; background:rgba(47,127,214,0.14); border:1px solid rgba(47,127,214,0.3);
+    display:flex; align-items:center; justify-content:center; color:var(--cyan);
+  }
+  .team-card h4{font-size:13.5px; color:var(--ink); line-height:1.3;}
+
+  .team-note{
+    margin-top:36px; padding:26px 28px; background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius);
+    color:var(--ink-dim); font-size:15px; max-width:760px;
+  }
+
+  /* ---------- LECTURES & COLLEGE ---------- */
+  .split{display:grid; grid-template-columns:1fr 1fr; gap:60px;}
+  @media (max-width:860px){ .split{grid-template-columns:1fr;} }
+  .topic-list, .offer-list{display:flex; flex-direction:column; gap:0;}
+  .topic-list li, .offer-list li{
+    padding:15px 0; border-bottom:1px solid var(--line);
+    font-size:15px; color:var(--ink-dim);
+    display:flex; align-items:center; gap:12px;
+  }
+  .topic-list li::before{content:'—'; color:var(--cyan); font-family:var(--mono);}
+  .offer-list li::before{content:'✓'; color:var(--amber); font-family:var(--mono); font-size:13px;}
+
+  /* ---------- CONTACT ---------- */
+  .contact{background:var(--bg-panel);}
+  .contact-inner{
+    display:grid; grid-template-columns:1.2fr 0.8fr; gap:60px; align-items:center;
+  }
+  @media (max-width:860px){ .contact-inner{grid-template-columns:1fr;} }
+  .contact h2{font-size:clamp(1.8rem,3.6vw,2.6rem); margin-bottom:18px;}
+  .contact p.lede{color:var(--ink-dim); max-width:460px; margin-bottom:32px;}
+  .contact-items{display:flex; flex-direction:column; gap:18px;}
+  .contact-item{display:flex; align-items:center; gap:16px; font-size:15.5px;}
+  .contact-icon{
+    width:42px; height:42px; border-radius:10px; background:rgba(79,214,224,0.1); border:1px solid rgba(79,214,224,0.3);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--cyan);
+  }
+  .contact-item a:hover{color:var(--cyan);}
+
+  .qr-card{
+    background:var(--bg); border:1px solid var(--line); border-radius:var(--radius);
+    padding:30px; text-align:center;
+  }
+  .qr-box{
+    width:150px; height:150px; margin:0 auto 16px;
+    background:#fff; border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .qr-card span{font-family:var(--mono); font-size:12px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.08em;}
+
+  footer{
+    padding:36px 0; text-align:center;
+    border-top:1px solid var(--line);
+    font-family:var(--mono); font-size:12.5px; color:var(--ink-faint);
+  }
+
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo">
+      <div class="logo-mark">T</div>
+      <div>TinyTech<small>IT Solutions</small></div>
+    </div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#approach">Approach</a>
+      <a href="#team">Team</a>
+      <a href="#colleges">Colleges</a>
+    </div>
+    <a class="nav-cta" href="#contact">Connect with us</a>
+    <button class="navtoggle" aria-label="Menu" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="wrap hero-inner">
+    <div>
+      <div class="eyebrow">Corporate IT training · technology leadership</div>
+      <h1>Empowering careers.<br>Building <span class="accent">futures.</span></h1>
+      <p class="lede">Industry experts. Future leaders. Career excellence. We bridge the gap between academic learning and industry expectations — with training built on real enterprise scenarios, not slideware.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="#expertise">Explore our programs</a>
+        <a class="btn-ghost" href="#contact">Get in touch</a>
+      </div>
+      <div class="hero-tags">
+        <span>Oracle DBA</span>
+        <span>SQL Server</span>
+        <span>PostgreSQL</span>
+        <span>ServiceNow</span>
+        <span>Agile Delivery</span>
+      </div>
+    </div>
+
+    <div class="bridge-signature">
+      <svg class="bridge-svg" viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#4fd6e0"/>
+            <stop offset="1" stop-color="#2f7fd6"/>
+          </linearGradient>
+          <path id="bridgepath" d="M 70 260 Q 180 140 290 260" fill="none"/>
+        </defs>
+
+        <!-- towers -->
+        <line x1="70" y1="90" x2="70" y2="270" stroke="rgba(140,170,220,0.25)" stroke-width="1"/>
+        <line x1="290" y1="90" x2="290" y2="270" stroke="rgba(140,170,220,0.25)" stroke-width="1"/>
+
+        <!-- deck -->
+        <path d="M 70 260 Q 180 140 290 260" fill="none" stroke="url(#g1)" stroke-width="2" class="path-line"/>
+        <path d="M 30 275 L 330 275" stroke="rgba(140,170,220,0.18)" stroke-width="1"/>
+
+        <!-- support cables -->
+        <line x1="120" y1="230" x2="70" y2="120" stroke="rgba(140,170,220,0.18)" stroke-width="1"/>
+        <line x1="150" y1="200" x2="70" y2="120" stroke="rgba(140,170,220,0.18)" stroke-width="1"/>
+        <line x1="240" y1="230" x2="290" y2="120" stroke="rgba(140,170,220,0.18)" stroke-width="1"/>
+        <line x1="210" y1="200" x2="290" y2="120" stroke="rgba(140,170,220,0.18)" stroke-width="1"/>
+
+        <!-- node: academia -->
+        <circle cx="70" cy="270" r="7" fill="#0f1d33" stroke="#f0b429" stroke-width="2"/>
+        <circle cx="70" cy="90" r="4" fill="#f0b429"/>
+        <text x="70" y="300" text-anchor="middle" class="node-label">Academia</text>
+
+        <!-- node: industry -->
+        <circle cx="290" cy="270" r="7" fill="#0f1d33" stroke="#4fd6e0" stroke-width="2"/>
+        <circle cx="290" cy="90" r="4" fill="#4fd6e0"/>
+        <text x="290" y="300" text-anchor="middle" class="node-label">Industry</text>
+
+        <!-- traveling pulse dots along the bridge -->
+        <circle r="4" fill="#4fd6e0" class="pulse-dot" style="offset-path:path('M 70 260 Q 180 140 290 260'); animation-delay:0s;"/>
+        <circle r="3" fill="#f0b429" class="pulse-dot" style="offset-path:path('M 70 260 Q 180 140 290 260'); animation-delay:1.6s;"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section about" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <div class="eyebrow">About us</div>
+      <h2 style="font-size:clamp(1.8rem,3.4vw,2.6rem); margin-bottom:20px;">A premier IT training organization, run by people still doing the job.</h2>
+      <p>TinyTech IT Solutions is a corporate IT training and technology leadership development organization founded by seasoned IT managers, technical leads, and industry professionals with real experience delivering enterprise-scale solutions across global organizations.</p>
+      <p>With combined expertise spanning multiple technologies, project management methodologies, and leadership roles, we equip students, fresh graduates, and working professionals with the practical skills today's technology industry actually demands.</p>
+    </div>
+    <div>
+      <div class="mission-card">
+        <div class="mission-icon">🎯</div>
+        <div>
+          <h3>Our mission</h3>
+          <p>Bridge the gap between academic learning and industry expectations.</p>
+        </div>
+      </div>
+      <div class="mission-card">
+        <div class="mission-icon">👁️</div>
+        <div>
+          <h3>Our vision</h3>
+          <p>To become the most trusted bridge between academia and industry — nurturing future-ready technology professionals and leaders.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="wrap section tight">
+    <div class="section-head">
+      <div class="eyebrow">Why TinyTech</div>
+      <h2>Trained by people who work the job every day.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-num">01</div>
+        <h3>Led by industry leaders</h3>
+        <p>Our team consists of experienced IT managers, project leads, solution architects, and technology experts actively working in leading IT organizations.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">02</div>
+        <h3>Real-world learning</h3>
+        <p>Every session is based on actual industry projects, case studies, and practical implementation scenarios.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">03</div>
+        <h3>Future-ready skills</h3>
+        <p>We focus on emerging technologies, leadership development, problem-solving, and professional excellence.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">04</div>
+        <h3>Industry-academia collaboration</h3>
+        <p>We partner with colleges and universities to prepare students for successful careers in the global IT ecosystem.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="expertise">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Our core expertise</div>
+      <h2>We don't just teach concepts — we show how they work in real life.</h2>
+    </div>
+    <div class="expertise-grid">
+      <div>
+        <div class="stack-group">
+          <h3>Technology trainings</h3>
+          <div class="stack-list">
+            <div class="stack-item">Oracle DBA <span class="tag">DATABASE</span></div>
+            <div class="stack-item">SQL Server <span class="tag">DATABASE</span></div>
+            <div class="stack-item">PostgreSQL DB <span class="tag">DATABASE</span></div>
+            <div class="stack-item">ServiceNow <span class="tag">ITSM</span></div>
+          </div>
+        </div>
+        <div class="stack-group">
+          <h3>Career acceleration programs</h3>
+          <div class="stack-list">
+            <div class="stack-item">Industry readiness bootcamps</div>
+            <div class="stack-item">Placement preparation</div>
+            <div class="stack-item">Resume building workshops</div>
+            <div class="stack-item">Mock interviews</div>
+            <div class="stack-item">Career mentorship sessions</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-faint); margin-bottom:18px;">Real-time scenarios explained</h3>
+        <div class="scenario-list">
+          <div class="scenario">
+            <div class="scenario-marker">01</div>
+            <div><h4>Database performance tuning (Oracle / SQL Server)</h4><p>Analyze slow queries, optimize execution plans, and improve performance in high-load production systems.</p></div>
+          </div>
+          <div class="scenario">
+            <div class="scenario-marker">02</div>
+            <div><h4>ServiceNow incident management</h4><p>Configure real-time incident workflows, SLAs, and integrations used in enterprise ITSM environments.</p></div>
+          </div>
+          <div class="scenario">
+            <div class="scenario-marker">03</div>
+            <div><h4>Backup &amp; recovery strategies</h4><p>Design and implement robust backup, recovery, and high-availability solutions for critical databases.</p></div>
+          </div>
+          <div class="scenario">
+            <div class="scenario-marker">04</div>
+            <div><h4>Project delivery &amp; agile practices</h4><p>Understand how requirements are gathered, tasks are managed, and solutions are delivered in agile teams.</p></div>
+          </div>
+          <div class="scenario">
+            <div class="scenario-marker">05</div>
+            <div><h4>Troubleshooting &amp; problem solving</h4><p>Work on real incidents and learn the systematic root-cause analysis used by IT professionals.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="approach section tight" id="approach">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Our training approach</div>
+      <h2>From concept to career-ready, in four stages.</h2>
+    </div>
+    <div class="approach-track">
+      <div class="approach-line"></div>
+      <div class="approach-step">
+        <div class="approach-index">1</div>
+        <h3>Learn</h3>
+        <p>Understand industry concepts from experienced practitioners.</p>
+      </div>
+      <div class="approach-step">
+        <div class="approach-index">2</div>
+        <h3>Practice</h3>
+        <p>Hands-on labs, case studies, and project-based work.</p>
+      </div>
+      <div class="approach-step">
+        <div class="approach-index">3</div>
+        <h3>Transform</h3>
+        <p>Develop confidence, technical excellence, and professional maturity.</p>
+      </div>
+      <div class="approach-step">
+        <div class="approach-index">4</div>
+        <h3>Succeed</h3>
+        <p>Become industry-ready and career-focused.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="team">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Meet our expert team</div>
+      <h2>Five accomplished IT professionals, one shared mission.</h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-card"><div class="team-icon">◈</div><h4>IT Managers</h4></div>
+      <div class="team-card"><div class="team-icon">◇</div><h4>Technical Leads</h4></div>
+      <div class="team-card"><div class="team-icon">◆</div><h4>Solution Consultants</h4></div>
+      <div class="team-card"><div class="team-icon">⬡</div><h4>Project Leaders</h4></div>
+      <div class="team-card"><div class="team-icon">◉</div><h4>Technology Mentors</h4></div>
+    </div>
+    <div class="team-note">Together, our team brings more than 15 years of combined experience across enterprise applications, cloud technologies, software development, project delivery, and leadership.</div>
+  </div>
+</section>
+
+<section class="section tight" id="colleges" style="background:var(--bg-panel);">
+  <div class="wrap split">
+    <div>
+      <div class="eyebrow">Guest lectures &amp; college engagements</div>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem); margin-bottom:20px;">We conduct impactful sessions designed to inspire and prepare students for the future.</h2>
+      <ul class="topic-list">
+        <li>Future of Technology in the IT Industry</li>
+        <li>Industry 5.0 and Digital Transformation</li>
+        <li>Building a Successful IT Career</li>
+        <li>From Campus to Corporate</li>
+        <li>Cloud Computing: Opportunities &amp; Trends</li>
+        <li>Cyber Security in the Modern World</li>
+        <li>Leadership Skills for Young Professionals</li>
+        <li>Emerging Technologies and Innovation</li>
+      </ul>
+    </div>
+    <div>
+      <div class="eyebrow">College collaboration opportunities</div>
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem); margin-bottom:20px;">We offer:</h2>
+      <ul class="offer-list">
+        <li>Guest lectures</li>
+        <li>Faculty development programs (FDP)</li>
+        <li>Industry readiness workshops</li>
+        <li>Technical bootcamps</li>
+        <li>Hackathon mentoring</li>
+        <li>Placement preparation programs</li>
+        <li>Career guidance sessions</li>
+        <li>Technology awareness seminars</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section contact" id="contact">
+  <div class="wrap contact-inner">
+    <div>
+      <div class="eyebrow">Connect with us</div>
+      <h2>Ready to bridge the gap?</h2>
+      <p class="lede">Whether you're a student, a working professional, or a college looking to partner with us — reach out and let's talk.</p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="contact-icon">✉</div>
+          <a href="mailto:tinytechlearnings@gmail.com">tinytechlearnings@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">☎</div>
+          <a href="tel:+917842950966">+91 7842950966</a>
+        </div>
+      </div>
+    </div>
+    <div class="qr-card">
+      <div class="qr-box">
+        <svg width="120" height="120" viewBox="0 0 29 29" xmlns="http://www.w3.org/2000/svg">
+          <rect width="29" height="29" fill="#fff"/>
+          <g fill="#04101f">
+            <rect x="0" y="0" width="7" height="7"/><rect x="1" y="1" width="5" height="5" fill="#fff"/><rect x="2" y="2" width="3" height="3"/>
+            <rect x="22" y="0" width="7" height="7"/><rect x="23" y="1" width="5" height="5" fill="#fff"/><rect x="24" y="2" width="3" height="3"/>
+            <rect x="0" y="22" width="7" height="7"/><rect x="1" y="23" width="5" height="5" fill="#fff"/><rect x="2" y="24" width="3" height="3"/>
+            <rect x="9" y="0" width="1" height="1"/><rect x="11" y="0" width="2" height="1"/><rect x="15" y="0" width="1" height="1"/><rect x="18" y="0" width="1" height="1"/>
+            <rect x="9" y="9" width="4" height="4"/><rect x="16" y="9" width="4" height="4"/>
+            <rect x="9" y="16" width="4" height="4"/><rect x="16" y="16" width="1" height="1"/><rect x="18" y="16" width="4" height="4"/>
+            <rect x="9" y="21" width="1" height="1"/><rect x="12" y="21" width="1" height="1"/><rect x="15" y="21" width="4" height="1"/>
+            <rect x="9" y="24" width="4" height="1"/><rect x="16" y="24" width="1" height="4"/><rect x="20" y="24" width="4" height="1"/>
+            <rect x="9" y="27" width="1" height="1"/><rect x="12" y="27" width="4" height="1"/><rect x="20" y="27" width="1" height="1"/>
+          </g>
+        </svg>
+      </div>
+      <span>Scan to connect</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  TinyTech IT Solutions — Learn. Practice. Transform. Succeed.
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
+  }, {threshold:0.12});
+  document.querySelectorAll('.section, .hero-inner').forEach(el=>{
+    el.classList.add('reveal');
+    io.observe(el);
+  });
+</script>
+
+</body>
+</html>
