@@ -94,6 +94,18 @@
   }
   .navlinks a:hover::after{width:100%;}
 
+  .nav-social{
+    width:34px; height:34px; border-radius:50%;
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-size:13px; font-weight:500;
+    color:var(--ink-dim);
+    transition:border-color .2s, color .2s;
+    margin-right:6px;
+  }
+  .nav-social:hover{border-color:var(--cyan); color:var(--cyan);}
+  @media (max-width:860px){ .nav-social{display:none;} }
+
   .nav-cta{
     font-family:var(--mono); font-size:13px;
     border:1px solid rgba(79,214,224,0.4);
@@ -333,9 +345,8 @@
   /* ---------- CONTACT ---------- */
   .contact{background:var(--bg-panel);}
   .contact-inner{
-    display:grid; grid-template-columns:1.2fr 0.8fr; gap:60px; align-items:center;
+    max-width:640px;
   }
-  @media (max-width:860px){ .contact-inner{grid-template-columns:1fr;} }
   .contact h2{font-size:clamp(1.8rem,3.6vw,2.6rem); margin-bottom:18px;}
   .contact p.lede{color:var(--ink-dim); max-width:460px; margin-bottom:32px;}
   .contact-items{display:flex; flex-direction:column; gap:18px;}
@@ -343,19 +354,9 @@
   .contact-icon{
     width:42px; height:42px; border-radius:10px; background:rgba(79,214,224,0.1); border:1px solid rgba(79,214,224,0.3);
     display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--cyan);
+    font-family:var(--mono); font-weight:600; font-size:15px;
   }
   .contact-item a:hover{color:var(--cyan);}
-
-  .qr-card{
-    background:var(--bg); border:1px solid var(--line); border-radius:var(--radius);
-    padding:30px; text-align:center;
-  }
-  .qr-box{
-    width:150px; height:150px; margin:0 auto 16px;
-    background:#fff; border-radius:8px;
-    display:flex; align-items:center; justify-content:center;
-  }
-  .qr-card span{font-family:var(--mono); font-size:12px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.08em;}
 
   footer{
     padding:36px 0; text-align:center;
@@ -382,6 +383,7 @@
       <a href="#team">Team</a>
       <a href="#colleges">Colleges</a>
     </div>
+    <a class="nav-social" href="https://www.linkedin.com/in/tinytech-it-solutions-822370421" target="_blank" rel="noopener" aria-label="TinyTech IT Solutions on LinkedIn">in</a>
     <a class="nav-cta" href="#contact">Connect with us</a>
     <button class="navtoggle" aria-label="Menu" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
       <span></span><span></span><span></span>
@@ -666,26 +668,11 @@
           <div class="contact-icon">☎</div>
           <a href="tel:+917842950966">+91 7842950966</a>
         </div>
+        <div class="contact-item">
+          <div class="contact-icon">in</div>
+          <a href="https://www.linkedin.com/in/tinytech-it-solutions-822370421" target="_blank" rel="noopener">linkedin.com/in/tinytech-it-solutions</a>
+        </div>
       </div>
-    </div>
-    <div class="qr-card">
-      <div class="qr-box">
-        <svg width="120" height="120" viewBox="0 0 29 29" xmlns="http://www.w3.org/2000/svg">
-          <rect width="29" height="29" fill="#fff"/>
-          <g fill="#04101f">
-            <rect x="0" y="0" width="7" height="7"/><rect x="1" y="1" width="5" height="5" fill="#fff"/><rect x="2" y="2" width="3" height="3"/>
-            <rect x="22" y="0" width="7" height="7"/><rect x="23" y="1" width="5" height="5" fill="#fff"/><rect x="24" y="2" width="3" height="3"/>
-            <rect x="0" y="22" width="7" height="7"/><rect x="1" y="23" width="5" height="5" fill="#fff"/><rect x="2" y="24" width="3" height="3"/>
-            <rect x="9" y="0" width="1" height="1"/><rect x="11" y="0" width="2" height="1"/><rect x="15" y="0" width="1" height="1"/><rect x="18" y="0" width="1" height="1"/>
-            <rect x="9" y="9" width="4" height="4"/><rect x="16" y="9" width="4" height="4"/>
-            <rect x="9" y="16" width="4" height="4"/><rect x="16" y="16" width="1" height="1"/><rect x="18" y="16" width="4" height="4"/>
-            <rect x="9" y="21" width="1" height="1"/><rect x="12" y="21" width="1" height="1"/><rect x="15" y="21" width="4" height="1"/>
-            <rect x="9" y="24" width="4" height="1"/><rect x="16" y="24" width="1" height="4"/><rect x="20" y="24" width="4" height="1"/>
-            <rect x="9" y="27" width="1" height="1"/><rect x="12" y="27" width="4" height="1"/><rect x="20" y="27" width="1" height="1"/>
-          </g>
-        </svg>
-      </div>
-      <span>Scan to connect</span>
     </div>
   </div>
 </section>
